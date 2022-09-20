@@ -126,7 +126,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                     child: ListView(
                       scrollDirection: Axis.vertical,
                       children: const [
-                        SizedBox(height: 550, child: MainCardListYedek()),
+                        SizedBox(height: 450, child: MainCardList()),
                       ],
                     ),
                   ),

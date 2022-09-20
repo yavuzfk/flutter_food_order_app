@@ -27,23 +27,30 @@ class _MainCardListState extends State<MainCardList> {
       body: BlocBuilder<AnasayfaCubit, List<Food>>(
         builder: (context, foodList) {
           if (foodList.isNotEmpty) {
-            return ListView.builder(
-                // shrinkWrap: true,
-                itemCount: foodList.length, //3
-                itemBuilder: (context, index) {
-                  var food = foodList[index];
-                  print(food.yemek_adi);
-                  return GridView.count(
-                    crossAxisCount: 2,
-                    children: [
-                      GestureDetector(
-                          onTap: () {},
-                          child:  FoodCard(
-                            imagePath: 'assets/pizza.jpg', foodName: food.yemek_adi, foodPrice: food.yemek_fiyat,)),
-                    ],
+            return MediaQuery.removePadding(
+              context: context,
+              removeTop: true,
+              child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 5
+                  ),
 
-                  );
-                });
+                  itemCount: foodList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    var food = foodList[index];
+                    print(food.yemek_adi);
+                    return GestureDetector(
+                      onTap: () {},
+                      child: FoodCard(
+                        imagePath: "http://kasimadalan.pe.hu/yemekler/resimler/${food.yemek_resim_adi}",
+                        foodName: food.yemek_adi,
+                        foodPrice: food.yemek_fiyat,
+                      ),
+                    );
+                  }),
+            );
           } else {
             print("ELS-----------------E");
             return const Center();
@@ -54,44 +61,4 @@ class _MainCardListState extends State<MainCardList> {
   }
 }
 
-/*
-*
-* Card(
-      color: ColorItems.backgroundColor,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Column(
-            children:   [
-              GestureDetector(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => FoodDetail(foodPrice: 45, foodName: "Makarna"),));
-                  },
-                  child: FoodCard(imagePath: 'assets/pizza.jpg')),
-              SizedBox(width: 15),
-              FoodCard(imagePath: 'assets/pizza.jpg'),
-              SizedBox(width: 15),
-              FoodCard(imagePath: 'assets/pizza.jpg'),
-              SizedBox(width: 15),
-              FoodCard(imagePath: 'assets/pizza.jpg'),
-              SizedBox(width: 15),
-              FoodCard(imagePath: 'assets/pizza.jpg'),
-            ],
-          ),
-          Column(
-            children:  const [
-              FoodCard(imagePath: 'assets/pizza.jpg'),
-              SizedBox(width: 15),
-              FoodCard(imagePath: 'assets/pizza.jpg'),
-              SizedBox(width: 15),
-              FoodCard(imagePath: 'assets/pizza.jpg'),
-              SizedBox(width: 15),
-              FoodCard(imagePath: 'assets/pizza.jpg'),
-              SizedBox(width: 15),
-              FoodCard(imagePath: 'assets/pizza.jpg'),
-            ],
-          ),
-        ],
-      ),
-    );
-* */
+

@@ -20,13 +20,12 @@ class FoodDaoRepository{
 
   }
 
-  // Future<List<Food>> foodSearch(String searchKey) async {
-  //   var url = "";
-  //   var veri = {"yemek_adi":searchKey};
-  //   var answer = await Dio().post(url, data: FormData.fromMap(veri));
+  // Future<List<Food>> getFoodImage(String yemek_resim_adi) async {
+  //   var url = "https://kasimadalan.pe.hu/yemekler/resimler/$yemek_resim_adi";
+  //   var answer = await Dio().get(url);
   //   return parseFoodAnswer(answer.data.toString());
   // }
-  //
+
   // Future<List<Food>> getSelectedFood() async{
   //   var url = "http://kasimadalan.pe.hu/yemekler/sepettekiYemekleriGetir.php";
   // }

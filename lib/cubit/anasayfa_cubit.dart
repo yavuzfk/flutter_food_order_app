@@ -12,4 +12,10 @@ class AnasayfaCubit extends Cubit<List<Food>> {
     var list = await foodRepo.getAllFood();
     emit(list);
   }
+
+  // Future<String> getFoodImage(String yemek_resim_adi) async {
+  //   String list = (await foodRepo.getFoodImage(yemek_resim_adi)) as String;
+  //   return list;
+  //   //emit(list);
+  // }
 }

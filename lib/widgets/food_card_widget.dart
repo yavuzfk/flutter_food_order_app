@@ -14,9 +14,9 @@ final String foodPrice;
           SizedBox(
               width: 160,
               height: 100,
-              child: Image.asset(imagePath)),
+              child: Image.network(imagePath)),
           Text(foodName,style: TextItems.headerText,),
-          Text("Domates soslu ",style: TextItems.lowGrayText,),
+          Text("Sağlıklı",style: TextItems.lowGrayText,),
           Text("${foodPrice} TL ",style: TextItems.headerText,),
 
         ],
@@ -24,4 +24,3 @@ final String foodPrice;
     );
   }
 }
-
