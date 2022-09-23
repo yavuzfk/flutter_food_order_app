@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_order_food_app/views_and_widgets/main_page/main_page.dart';
+import 'package:flutter_order_food_app/views_and_widgets/order_page/order_page.dart';
 
 class BottomAppBarS extends StatelessWidget {
   const BottomAppBarS({
     Key? key,
     required TabController tabController,
-    required this.backgroundColor,
+    required this.backgroundColor, required this.userName,
   })  : _tabController = tabController,
         super(key: key);
 
   final TabController _tabController;
-  final double _iconSize = 35;
+  final double _iconSize = 30;
   final Color backgroundColor;
-
+  final String userName;
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -24,7 +26,7 @@ class BottomAppBarS extends StatelessWidget {
           Tab(
             icon: GestureDetector(
               onTap: () {
-
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MainPage(userName: userName)));
               },
               child: Icon(
                 Icons.home,
@@ -35,10 +37,10 @@ class BottomAppBarS extends StatelessWidget {
           Tab(
             icon: GestureDetector(
               onTap: () {
-
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => OrderPage(userName:userName ),));
               },
               child: Icon(
-                Icons.restaurant_menu,
+                Icons.shopping_cart,
                 size: _iconSize,
               ),
             ),

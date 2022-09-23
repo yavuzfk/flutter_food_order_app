@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_order_food_app/views/main_page.dart';
+
+import '../main_page.dart';
 
 class ProductTypeButton extends StatelessWidget {
   const ProductTypeButton({
