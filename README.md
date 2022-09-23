@@ -1,16 +1,16 @@
-# flutter_order_food_app
+# Flutter Food Order App
 
-A new Flutter project.
+- In this project, a food ordering application has been developed by using the given APIs as an example.
 
-## Getting Started
+## Tech
+- BLoC Pattern
+- Network with [Dio](https://pages.github.com/)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![Screenshot_20220923_152257](https://user-images.githubusercontent.com/17355685/191962644-8ef89088-a0da-4a64-a077-90bec2f12c1c.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+https://user-images.githubusercontent.com/17355685/191962284-d9655360-13e3-49ab-a4e6-12ae33bc956f.mp4
+
+
