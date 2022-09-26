@@ -3,10 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_order_food_app/cubit/anasayfa_cubit.dart';
 import 'package:flutter_order_food_app/utilities/color_items.dart';
 import 'package:flutter_order_food_app/utilities/text_styles.dart';
-import 'package:flutter_order_food_app/views_and_widgets/main_page/widgets/bottom_app_bar.dart';
-import 'package:flutter_order_food_app/views_and_widgets/main_page/widgets/product_type_button.dart';
-import 'package:flutter_order_food_app/views_and_widgets/main_page/widgets/search_button.dart';
-import 'package:flutter_order_food_app/views_and_widgets/order_page/order_page.dart';
+import 'package:flutter_order_food_app/views/main_page/widgets/bottom_app_bar.dart';
+import 'package:flutter_order_food_app/views/main_page/widgets/food_card_widget.dart';
+import 'package:flutter_order_food_app/views/main_page/widgets/product_type_button.dart';
+import 'package:flutter_order_food_app/views/main_page/widgets/search_button.dart';
+import 'package:flutter_order_food_app/views/order_page/order_page.dart';
+import '../../entitiy/food_model.dart';
+import '../food_detail_page/food_detail_page.dart';
 import 'widgets/main_card_list.dart';
 
 class MainPage extends StatefulWidget {
@@ -33,7 +36,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
     _textEditingController.dispose();
     super.dispose();
   }
-
+  String foodType = "-";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,20 +87,15 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                           ),
                         ),
                         SearchButton(
-                            textEditingController: _textEditingController)
+                            textEditingController: _textEditingController,
+                            userName: widget.userName,
+                        )
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          ProductTypeButton(type: "Yemek"),
-                          ProductTypeButton(type: "İçecek"),
-                          ProductTypeButton(type: "Tatlı"),
-                        ],
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    //   child: FoodTypeButtons(),
+                    // ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 0.0),
                       child: Row(
@@ -121,11 +119,15 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                     ),
                     Container(
                       margin: const EdgeInsets.symmetric(vertical: 0.0),
-                      height: 460.0,
+                      height: 550.0,
                       child: ListView(
                         scrollDirection: Axis.vertical,
                         children:  [
-                          SizedBox(height: 450, child: MainCardList(userName: widget.userName,)),
+                          SizedBox(height: 540, child: MainCardList(
+                            userName: widget.userName,
+
+                          )
+                          ),
                         ],
                       ),
                     ),
@@ -143,6 +145,17 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
               backgroundColor: ColorItems.backgroundColor,
             )));
   }
+
+  // Row FoodTypeButtons() {
+  //   return Row(
+  //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //                     children: const [
+  //                       ProductTypeButton(type: "Yemek"),
+  //                       ProductTypeButton(type: "İçecek"),
+  //                       ProductTypeButton(type: "Tatlı"),
+  //                     ],
+  //                   );
+  // }
 }
 
 void getFoodProducts() {

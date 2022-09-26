@@ -2,39 +2,67 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'dart:convert';
 import 'package:flutter_order_food_app/entitiy/food_model.dart';
-import 'package:flutter_order_food_app/entitiy/food_web_answer.dart';
+import 'package:flutter_order_food_app/entitiy/food_answer.dart';
+import 'package:flutter_order_food_app/entitiy/sepet_answer.dart';
+import 'package:flutter_order_food_app/entitiy/sepet_model.dart';
+import 'package:flutter_order_food_app/utilities/text_styles.dart';
+import 'package:flutter_order_food_app/utilities/string_items.dart';
 
-class FoodDaoRepository{
-  List<Food> parseFoodAnswer(String answer){
-    return FoodWebAnswer.fromJson(json.decode(answer)).food;
+class FoodDaoRepository with MyTextStyles {
+  List<Food> parseFoodAnswer(String answer) {
+    return FoodAnswer.fromJson(json.decode(answer)).food;
   }
+
+  List<Sepet> parseSepetAnswer(String answer) {
+    return SepetAnswer.fromJson(json.decode(answer)).sepet;
+  }
+
   Future<List<Food>> getAllFood() async {
-    var url = "http://kasimadalan.pe.hu/yemekler/tumYemekleriGetir.php";
+    var url = StringItems().tumYemekleriGetirUrl;
     var answer = await Dio().get(url);
-    if(answer.statusCode == HttpStatus.ok){
+    if (answer.statusCode == HttpStatus.ok) {
       return parseFoodAnswer(answer.data.toString());
-    }else {
+    } else {
       print("http status error");
       return parseFoodAnswer(answer.data.toString());
     }
-
   }
 
-  // Future<List<Food>> getFoodImage(String yemek_resim_adi) async {
-  //   var url = "https://kasimadalan.pe.hu/yemekler/resimler/$yemek_resim_adi";
-  //   var answer = await Dio().get(url);
-  //   return parseFoodAnswer(answer.data.toString());
-  // }
+  Future<void> sepeteEkle(String yemek_adi, String yemek_resim_adi,
+      int yemek_fiyat, int yemek_siparis_adet, String kullanici_adi) async {
+    var url = StringItems().sepeteEkleUrl;
+    var veri = {
+      "yemek_adi": yemek_adi,
+      "yemek_resim_adi": yemek_resim_adi,
+      "yemek_fiyat": yemek_fiyat,
+      "yemek_siparis_adet": yemek_siparis_adet,
+      "kullanici_adi": kullanici_adi
+    };
+    var cevap = await Dio().post(url, data: FormData.fromMap(veri));
+    print("sepete Ekle: ${cevap.data.toString()}");
+    print(
+        "Yemek adı: $yemek_adi - Yemek resim adi: $yemek_resim_adi - yemek siparis adedi: $yemek_siparis_adet - kullanici: $kullanici_adi");
+  }
 
-  // Future<List<Food>> getSelectedFood() async{
-  //   var url = "http://kasimadalan.pe.hu/yemekler/sepettekiYemekleriGetir.php";
-  // }
+  Future<List<Sepet>> sepetiGetir(String kullanici_adi) async {
+    var url = StringItems().sepettekileriGetirUrl;
+    var veri = {"kullanici_adi": kullanici_adi};
+    var cevap = await Dio().post(url, data: FormData.fromMap(veri));
+    return parseSepetAnswer(cevap.data.toString());
+  }
 
-// Future<void> foodRegister(String yemek_adi, String yemek_fiyat) async {
-//   var url = "";
-//   var veri = {"yemek_adi":yemek_adi, "yemek_fiyati": yemek_fiyat};
-//   var answer = await Dio().post(url, data: FormData.fromMap(veri));
-//   print("kisi ekle: ${answer.data.toString()}");
-// }
+  Future<void> sepettenYemekSil(
+      String sepet_yemek_id, String kullanici_adi) async {
+    var url = StringItems().sepettenYemekSilUrl;
+    var veri = {
+      "sepet_yemek_id": sepet_yemek_id,
+      "kullanici_adi": kullanici_adi
+    };
+    var cevap = await Dio().post(url, data: FormData.fromMap(veri));
+    print(
+        "sepetten sil: $sepet_yemek_id $kullanici_adi => ${cevap.data.toString()}");
+  }
 
 }
+
+

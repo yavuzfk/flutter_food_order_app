@@ -17,6 +17,7 @@ class ProductTypeButton extends StatelessWidget {
           onPressed: () {
             if(type=='Food'){
               getFoodProducts();
+
             }else if(type=='Drink'){
               getDrinkProducts();
             }else if(type == 'Dessert'){

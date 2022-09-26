@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-class TextItems {
+class MyTextStyles {
   static TextStyle headerText = const TextStyle(
     //fontWeight: FontWeight.bold,
       fontSize: 20,
@@ -7,6 +7,10 @@ class TextItems {
   static TextStyle lowGrayText = const TextStyle(
     fontSize: 12,
     color: Colors.grey,
+  );
+  static TextStyle lowWhiteText = const TextStyle(
+    fontSize: 12,
+    color: Colors.white,
   );
   static TextStyle welcomeTextStyle = const TextStyle(
     wordSpacing: 2,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_order_food_app/views_and_widgets/main_page/main_page.dart';
-import 'package:flutter_order_food_app/views_and_widgets/order_page/order_page.dart';
+import 'package:flutter_order_food_app/views/main_page/main_page.dart';
+import 'package:flutter_order_food_app/views/order_page/order_page.dart';
 
 class BottomAppBarS extends StatelessWidget {
   const BottomAppBarS({
