@@ -6,7 +6,8 @@ import 'package:flutter_order_food_app/utilities/color_items.dart';
 import 'package:flutter_order_food_app/utilities/string_items.dart';
 import 'package:flutter_order_food_app/utilities/style_items.dart';
 import 'package:flutter_order_food_app/utilities/text_styles.dart';
-import 'package:flutter_order_food_app/views/order_page/widgets/siparis_ver_button.dart';
+import 'package:flutter_order_food_app/views/order_page/widgets/siparis_button.dart';
+
 
 class OrderPage extends StatefulWidget {
   const OrderPage({Key? key, required this.userName}) : super(key: key);
@@ -145,17 +146,22 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
                               }
                             }),
                       ),
-                      // const SizedBox(
-                      //   height: 20,
-                      // ),
                     ],
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 12.0),
-                child: SiparisButton(),
-              )
+               Container(
+                 width: MediaQuery.of(context).size.width * 0.86,
+                 child: SimpleRoundIconButton2(
+                   backgroundColor: ColorItems.orangeColor,
+                   buttonText:  Text(
+                     StringItems().welcomePageButtonText,
+                     style: const TextStyle(color: Colors.white),
+                   ),
+                   icon: const Icon(Icons.payment),
+                   iconAlignment: Alignment.centerRight,
+                 ),
+               )
             ],
           ),
         ),
