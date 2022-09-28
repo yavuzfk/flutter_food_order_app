@@ -3,6 +3,7 @@ import 'package:flutter_order_food_app/utilities/color_items.dart';
 import 'package:flutter_order_food_app/utilities/string_items.dart';
 import 'package:flutter_order_food_app/utilities/text_styles.dart';
 import 'package:flutter_order_food_app/views/main_page/main_page.dart';
+import 'package:flutter_order_food_app/views/welcome_page/widgets/go_button.dart';
 import 'package:flutter_order_food_app/views/welcome_page/widgets/image_slider.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -47,7 +48,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   height: 300,
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Image.asset("assets/food.png"),
+                    child: Image.asset(StringItems().welcomePageImagePath),
                   ),
                 ),
                  Padding(
@@ -92,21 +93,22 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0, bottom: 2),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                MainPage(userName: _controller.text),
-                          ));
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.deepOrange,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                    ),
-                    child: const Text("Yemek Sipariş Ver"),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.86,
+                        child: SimpleRoundIconButton(
+                          backgroundColor: ColorItems.orangeColor,
+                          buttonText:  Text(
+                            StringItems().welcomePageButtonText,
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                          icon: const Icon(Icons.restaurant_menu),
+                          iconAlignment: Alignment.centerRight,
+                          userName: _controller.text,
+                        ),
+                      ),
+                    ],
                   ),
                 )
               ],

@@ -32,9 +32,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-//media query
-// gridi yukarı al
-// artan azalan sıralaması yapılabilir / sort ile
-//arama yapılabilir
-//

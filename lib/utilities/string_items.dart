@@ -20,5 +20,7 @@ class StringItems {
   final String welcomeTitle = "Hızlı Yemek Siparişi";
   final String welcomeText = "API lerimizden gelen sağlıklı yemekler içerisinden dilediğini seç!";
   final String userNameRequestMessage = "DEVAM ETMEK İÇİN LÜTFEN KULLANICI ADINI GİRİN";
+  final String welcomePageButtonText = "Yemek Sipariş Ver";
+  final String welcomePageImagePath = "assets/food.png";
 
 }

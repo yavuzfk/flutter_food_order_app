@@ -73,6 +73,7 @@ class _FoodDetailState extends State<FoodDetail> {
                   child: ElevatedButton(
                       onPressed: () {
                         print(widget.foodSize);
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("${widget.foodSize} adet ${widget.foodName} sepete eklendi!")));
                           context.read<SepetCubit>().sepeteEkle(widget.foodName, widget.imagePath, widget.foodPrice, widget.foodSize, widget.userName);
                       },
                       style: ElevatedButton.styleFrom(
@@ -81,7 +82,7 @@ class _FoodDetailState extends State<FoodDetail> {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(20))),
                       ),
-                      child: const Text("ADD TO CARD")),
+                      child: const Text("SEPETE EKLE")),
                 ),
               ),
             ],
