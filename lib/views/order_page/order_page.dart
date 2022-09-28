@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_order_food_app/cubit/sepet_cubit.dart';
 import 'package:flutter_order_food_app/entitiy/sepet_model.dart';
 import 'package:flutter_order_food_app/utilities/color_items.dart';
+import 'package:flutter_order_food_app/utilities/string_items.dart';
+import 'package:flutter_order_food_app/utilities/style_items.dart';
 import 'package:flutter_order_food_app/utilities/text_styles.dart';
-import 'package:flutter_order_food_app/views/order_page/widgets/food_cart_sepet.dart';
+import 'package:flutter_order_food_app/views/order_page/widgets/siparis_ver_button.dart';
 
 class OrderPage extends StatefulWidget {
   const OrderPage({Key? key, required this.userName}) : super(key: key);
@@ -24,6 +26,8 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
     tutar = 0;
   }
 
+  int foodSize = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +35,9 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
         title: Text('Sepetim', style: MyTextStyles.headerText),
         backgroundColor: ColorItems.backgroundColor,
         leading: IconButton(
-          onPressed: Navigator.of(context).pop,
+          onPressed: Navigator
+              .of(context)
+              .pop,
           icon: const Icon(
             Icons.arrow_back,
             color: ColorItems.orangeColor,
@@ -40,15 +46,9 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
       ),
       body: Container(
         //  color: ColorItems.backgroundColor,
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  ColorItems.gradientColor,
-                  Colors.white60
-                ]
-            )
+        width: 395,
+        decoration: BoxDecoration(
+          gradient: StyleItems().linearGradient,
         ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -61,71 +61,89 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Container(
-                        // width: 360,
                         height: 570,
                         child: BlocBuilder<SepetCubit, List<Sepet>>(
                             builder: (context, foodList) {
-                          tutar = tutarHesapla(foodList);
-                          if (foodList.isNotEmpty) {
-                            return Column(
-                              children: [
-                                Expanded(
-                                  child: MediaQuery.removePadding(
-                                    context: context,
-                                    removeTop: true,
-                                    child: Center(
-                                      child: SizedBox(
-                                        width: 220,
-                                        // height: 450,
-                                        child: GridView.builder(
-                                          gridDelegate:
+                              tutar = 0;
+                              tutar = tutarHesapla(foodList);
+                              if (foodList.isNotEmpty) {
+                                return Column(
+                                  children: [
+                                    Expanded(
+                                      child: MediaQuery.removePadding(
+                                        context: context,
+                                        removeTop: true,
+                                        child: Center(
+                                          child: SizedBox(
+                                            width: 220,
+                                            child: GridView.builder(
+                                              gridDelegate:
                                               const SliverGridDelegateWithFixedCrossAxisCount(
                                                   crossAxisCount: 1,
                                                   crossAxisSpacing: 5,
                                                   mainAxisSpacing: 5),
-                                          itemCount: foodList.length,
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            var food = foodList[index];
-
-                                            tutar += (int.parse(
-                                                    food.yemek_siparis_adet) *
-                                                int.parse(food.yemek_fiyat));
-
-                                            print(food.yemek_adi);
-                                            return SizedBox(
-                                              // color: Colors.red,
-                                              child: FoodCardSepet(
-                                                imagePath:
-                                                    "http://kasimadalan.pe.hu/yemekler/resimler/${food.yemek_resim_adi}",
-                                                foodName: food.yemek_adi,
-                                                foodPrice:
-                                                    food.yemek_fiyat.toString(),
-                                                kullaniciAdi:
-                                                    food.kullanici_adi,
-                                                sepetYemekId:
-                                                    food.sepet_yemek_id,
-                                                foodSize: int.parse(
-                                                    food.yemek_siparis_adet),
-                                              ),
-                                            );
-                                          },
+                                              itemCount: foodList.length,
+                                              itemBuilder: (
+                                                  BuildContext context,
+                                                  int index) {
+                                                var food = foodList[index];
+                                                print(food.yemek_adi);
+                                                return SizedBox(
+                                                  // color: Colors.red,
+                                                  child: Card(
+                                                    child: Column(
+                                                      children: [
+                                                        SizedBox(
+                                                          //  width: 160,
+                                                            height: 110,
+                                                            child: Image
+                                                                .network(
+                                                                StringItems()
+                                                                    .imagesMainPath +
+                                                                    food
+                                                                        .yemek_resim_adi)),
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment
+                                                              .spaceEvenly,
+                                                          children: [
+                                                            Text(
+                                                              food.yemek_adi,
+                                                              style: MyTextStyles
+                                                                  .headerText,
+                                                            ),
+                                                            Text(
+                                                              "${food
+                                                                  .yemek_fiyat} TL ",
+                                                              style: MyTextStyles
+                                                                  .headerText,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        const SizedBox(
+                                                            height: 10),
+                                                        IncrementButtonsRow(
+                                                            context, food,
+                                                            foodList),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ),
-                                SizedBox(height: 1,),
-
-                                Text(
-                                  "Tutar: ${tutar.toString()}TL",style: MyTextStyles.welcomeTextStyle,
-                                )
-                              ],
-                            );
-                          } else {
-                            return const SizedBox.shrink();
-                          }
-                        }),
+                                    Text(
+                                      "Tutar: ${tutar.toString()}TL",
+                                      style: MyTextStyles.welcomeTextStyle,
+                                    )
+                                  ],
+                                );
+                              } else {
+                                return const SizedBox.shrink();
+                              }
+                            }),
                       ),
                       // const SizedBox(
                       //   height: 20,
@@ -134,35 +152,71 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 12.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return const AlertDialog(
-                            title: Text("Sipariş Başarıyla Verildi!!"),
-                            content: Text("Lokasyon eklemek için gereken feature eklenecektir."),
-                          );
-                        });
-
-
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.deepOrange,
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8))),
-                  ),
-                  child: const Text("Sipariş Ver"),
-                ),
+              const Padding(
+                padding: EdgeInsets.only(top: 12.0),
+                child: SiparisButton(),
               )
-
-              //verileri iceren bir liste yapilacak
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Row IncrementButtonsRow(BuildContext context, Sepet food,
+      List<Sepet> foodList) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        TextButton(
+          onPressed: () {
+            setState(() {
+              foodSize--;
+            });
+          },
+          child: const Text(
+            "-",
+            style: TextStyle(fontSize: 30, color: Colors.deepOrange),
+          ),
+        ),
+        Text(foodSize.toString()),
+        TextButton(
+          onPressed: () {
+            setState(() {
+              foodSize++;
+            });
+          },
+          child: const Text(
+            "+",
+            style: TextStyle(fontSize: 20, color: Colors.deepOrange),
+          ),
+        ),
+        const Spacer(),
+        TextButton(
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(StringItems().deleteFoodMessage),
+                action: SnackBarAction(
+                  label: "Evet",
+                  onPressed: () {
+                    context
+                        .read<SepetCubit>()
+                        .sepettenSil(food.sepet_yemek_id, food.kullanici_adi);
+
+                    if (foodList.length == 1) {
+                      setState(() {
+                        foodList.clear();
+                      });
+                    }
+                  },
+                ),
+              ));
+            },
+            child: const Text(
+              "Kaldır",
+              style: TextStyle(color: Colors.red, fontSize: 10),
+            ))
+      ],
     );
   }
 
@@ -173,4 +227,6 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
     }
     return tutar;
   }
+
+
 }

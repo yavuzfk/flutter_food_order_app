@@ -4,12 +4,8 @@ import 'package:flutter_order_food_app/cubit/anasayfa_cubit.dart';
 import 'package:flutter_order_food_app/utilities/color_items.dart';
 import 'package:flutter_order_food_app/utilities/text_styles.dart';
 import 'package:flutter_order_food_app/views/main_page/widgets/bottom_app_bar.dart';
-import 'package:flutter_order_food_app/views/main_page/widgets/food_card_widget.dart';
-import 'package:flutter_order_food_app/views/main_page/widgets/product_type_button.dart';
 import 'package:flutter_order_food_app/views/main_page/widgets/search_button.dart';
 import 'package:flutter_order_food_app/views/order_page/order_page.dart';
-import '../../entitiy/food_model.dart';
-import '../food_detail_page/food_detail_page.dart';
 import 'widgets/main_card_list.dart';
 
 class MainPage extends StatefulWidget {
@@ -57,7 +53,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                           width: 150,
                           child: ListTile(
                             subtitle: const Text("Hoşgeldin"),
-                            title: Text("Merhaba ${widget.userName}"),
+                            title: Text("Merhaba ${widget.userName.toUpperCase()}"),
                           ),
                         ),
                         const Spacer(),

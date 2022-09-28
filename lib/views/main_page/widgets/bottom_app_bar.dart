@@ -14,8 +14,11 @@ class BottomAppBarS extends StatelessWidget {
   final double _iconSize = 30;
   final Color backgroundColor;
   final String userName;
+
   @override
   Widget build(BuildContext context) {
+    const String _userPageMessage = "Kullanıcı Sayfası Henüz Oluşturulmadı";
+
     return BottomAppBar(
       color: backgroundColor,
       child: TabBar(
@@ -48,7 +51,7 @@ class BottomAppBarS extends StatelessWidget {
           Tab(
             icon: GestureDetector(
               onTap: () {
-
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(_userPageMessage)));
               },
               child: Icon(
                 Icons.person_outline,
