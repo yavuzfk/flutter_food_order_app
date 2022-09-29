@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_order_food_app/entitiy/sepet_model.dart';
+import 'package:flutter_order_food_app/entitiy/cart_model.dart';
 import 'package:flutter_order_food_app/repo/food_dao_repository.dart';
 
-class SepetCubit extends Cubit<List<Sepet>> {
-  SepetCubit():super(<Sepet>[]);
+class SepetCubit extends Cubit<List<Cart>> {
+  SepetCubit():super(<Cart>[]);
 
   var foodRepo = FoodDaoRepository();
 

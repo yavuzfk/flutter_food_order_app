@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_order_food_app/cubit/sepet_cubit.dart';
-import 'package:flutter_order_food_app/entitiy/sepet_model.dart';
+import 'package:flutter_order_food_app/entitiy/cart_model.dart';
 import 'package:flutter_order_food_app/utilities/color_items.dart';
 import 'package:flutter_order_food_app/utilities/string_items.dart';
 import 'package:flutter_order_food_app/utilities/style_items.dart';
@@ -63,7 +63,7 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
                     children: [
                       Container(
                         height: 570,
-                        child: BlocBuilder<SepetCubit, List<Sepet>>(
+                        child: BlocBuilder<SepetCubit, List<Cart>>(
                             builder: (context, foodList) {
                               tutar = 0;
                               tutar = tutarHesapla(foodList);
@@ -88,7 +88,7 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
                                                   BuildContext context,
                                                   int index) {
                                                 var food = foodList[index];
-                                                print(food.yemek_adi);
+                                                print(food.foodName);
                                                 return SizedBox(
                                                   // color: Colors.red,
                                                   child: Card(
@@ -102,19 +102,19 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
                                                                 StringItems()
                                                                     .imagesMainPath +
                                                                     food
-                                                                        .yemek_resim_adi)),
+                                                                        .foodImageName)),
                                                         Row(
                                                           mainAxisAlignment: MainAxisAlignment
                                                               .spaceEvenly,
                                                           children: [
                                                             Text(
-                                                              food.yemek_adi,
+                                                              food.foodName,
                                                               style: MyTextStyles
                                                                   .headerText,
                                                             ),
                                                             Text(
                                                               "${food
-                                                                  .yemek_fiyat} TL ",
+                                                                  .foodPrice} TL ",
                                                               style: MyTextStyles
                                                                   .headerText,
                                                             ),
@@ -155,7 +155,7 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
                  child: SimpleRoundIconButton2(
                    backgroundColor: ColorItems.orangeColor,
                    buttonText:  Text(
-                     StringItems().welcomePageButtonText,
+                     StringItems().siparisButtonText,
                      style: const TextStyle(color: Colors.white),
                    ),
                    icon: const Icon(Icons.payment),
@@ -169,8 +169,8 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
     );
   }
 
-  Row IncrementButtonsRow(BuildContext context, Sepet food,
-      List<Sepet> foodList) {
+  Row IncrementButtonsRow(BuildContext context, Cart food,
+      List<Cart> foodList) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -207,7 +207,7 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
                   onPressed: () {
                     context
                         .read<SepetCubit>()
-                        .sepettenSil(food.sepet_yemek_id, food.kullanici_adi);
+                        .sepettenSil(food.cartFoodId, food.userName);
 
                     if (foodList.length == 1) {
                       setState(() {
@@ -228,8 +228,8 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
 
   int tutarHesapla(List foodList) {
     for (int i = 0; i < foodList.length; i++) {
-      tutar += int.parse(foodList[i].yemek_fiyat) *
-          int.parse(foodList[i].yemek_siparis_adet);
+      tutar += int.parse(foodList[i].foodPrice) *
+          int.parse(foodList[i].foodOrderCount);
     }
     return tutar;
   }

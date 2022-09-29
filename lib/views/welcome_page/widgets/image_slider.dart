@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_order_food_app/cubit/anasayfa_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_order_food_app/utilities/string_items.dart';
 import '../../../cubit/anasayfa_cubit.dart';
 import '../../../entitiy/food_model.dart';
 
@@ -32,7 +33,7 @@ class _ImageSliderState extends State<ImageSlider> {
                   itemCount: foodList.length,
                   itemBuilder: (context, index) {
                     var food = foodList[index];
-                    print(food.yemek_adi);
+                    print(food.foodName);
                     return Card(
                       elevation: 8,
                       shadowColor: Colors.red,
@@ -42,7 +43,7 @@ class _ImageSliderState extends State<ImageSlider> {
                               //width: 160,
                               height: 200,
                               child: Image.network(
-                                  "http://kasimadalan.pe.hu/yemekler/resimler/${food.yemek_resim_adi}")),
+                                  StringItems().imagesMainPath + food.foodImageName)),
                         ],
                       ),
                     );

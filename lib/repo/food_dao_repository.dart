@@ -3,8 +3,8 @@ import 'package:dio/dio.dart';
 import 'dart:convert';
 import 'package:flutter_order_food_app/entitiy/food_model.dart';
 import 'package:flutter_order_food_app/entitiy/food_answer.dart';
-import 'package:flutter_order_food_app/entitiy/sepet_answer.dart';
-import 'package:flutter_order_food_app/entitiy/sepet_model.dart';
+import 'package:flutter_order_food_app/entitiy/cart_answer.dart';
+import 'package:flutter_order_food_app/entitiy/cart_model.dart';
 import 'package:flutter_order_food_app/utilities/text_styles.dart';
 import 'package:flutter_order_food_app/utilities/string_items.dart';
 
@@ -13,7 +13,7 @@ class FoodDaoRepository with MyTextStyles {
     return FoodAnswer.fromJson(json.decode(answer)).food;
   }
 
-  List<Sepet> parseSepetAnswer(String answer) {
+  List<Cart> parseSepetAnswer(String answer) {
     return SepetAnswer.fromJson(json.decode(answer)).sepet;
   }
 
@@ -44,7 +44,7 @@ class FoodDaoRepository with MyTextStyles {
         "Yemek adı: $yemek_adi - Yemek resim adi: $yemek_resim_adi - yemek siparis adedi: $yemek_siparis_adet - kullanici: $kullanici_adi");
   }
 
-  Future<List<Sepet>> sepetiGetir(String kullanici_adi) async {
+  Future<List<Cart>> sepetiGetir(String kullanici_adi) async {
     var url = StringItems().sepettekileriGetirUrl;
     var veri = {"kullanici_adi": kullanici_adi};
     var cevap = await Dio().post(url, data: FormData.fromMap(veri));

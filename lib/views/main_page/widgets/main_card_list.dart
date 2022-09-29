@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_order_food_app/cubit/anasayfa_cubit.dart';
+import 'package:flutter_order_food_app/utilities/string_items.dart';
 import 'package:flutter_order_food_app/views/food_detail_page/food_detail_page.dart';
 import '../../../cubit/anasayfa_cubit.dart';
 import '../../../entitiy/food_model.dart';
@@ -42,7 +43,7 @@ class _MainCardListState extends State<MainCardList> {
                   itemCount: foodList.length,
                   itemBuilder: (BuildContext context, int index) {
                     var food = foodList[index];
-                    print(food.yemek_adi);
+                    print(food.foodName);
 
                     // bool deneme=false;
                     // if(food.yemek_adi == "Ayran" ||food.yemek_adi == "Fanta"){
@@ -55,17 +56,17 @@ class _MainCardListState extends State<MainCardList> {
                             context,
                             MaterialPageRoute(
                               builder: (context) => FoodDetail(
-                                  imagePath: food.yemek_resim_adi,
-                                  foodPrice: int.parse(food.yemek_fiyat),
-                                  foodName: food.yemek_adi,
+                                  imagePath: food.foodImageName,
+                                  foodPrice: int.parse(food.foodPrice),
+                                  foodName: food.foodName,
                                   userName: widget.userName),
                             ));
                       },
                       child: FoodCard(
                         imagePath:
-                            "http://kasimadalan.pe.hu/yemekler/resimler/${food.yemek_resim_adi}",
-                        foodName: food.yemek_adi,
-                        foodPrice: food.yemek_fiyat.toString(),
+                            StringItems().imagesMainPath + food.foodImageName,
+                        foodName: food.foodName,
+                        foodPrice: food.foodPrice.toString(),
                       ),
                     );
                   }),

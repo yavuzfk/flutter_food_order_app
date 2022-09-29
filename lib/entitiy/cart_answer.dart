@@ -1,13 +1,13 @@
 
-import 'package:flutter_order_food_app/entitiy/sepet_model.dart';
+import 'package:flutter_order_food_app/entitiy/cart_model.dart';
 class SepetAnswer{
-  List<Sepet> sepet;
+  List<Cart> sepet;
 
   SepetAnswer({required this.sepet});
 
   factory SepetAnswer.fromJson(Map<String, dynamic> json){
     var jsonArray = json['sepet_yemekler'] as List;
-    List<Sepet> sepet = jsonArray.map((jsonArrayNesnesi) => Sepet.fromJson(jsonArrayNesnesi)).toList();
+    List<Cart> sepet = jsonArray.map((jsonArrayNesnesi) => Cart.fromJson(jsonArrayNesnesi)).toList();
     return SepetAnswer(sepet: sepet);
   }
 }
