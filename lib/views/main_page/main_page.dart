@@ -88,10 +88,6 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
                         )
                       ],
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    //   child: FoodTypeButtons(),
-                    // ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 0.0),
                       child: Row(
@@ -141,17 +137,6 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
               backgroundColor: ColorItems.backgroundColor,
             )));
   }
-
-  // Row FoodTypeButtons() {
-  //   return Row(
-  //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                     children: const [
-  //                       ProductTypeButton(type: "Yemek"),
-  //                       ProductTypeButton(type: "İçecek"),
-  //                       ProductTypeButton(type: "Tatlı"),
-  //                     ],
-  //                   );
-  // }
 }
 
 void getFoodProducts() {

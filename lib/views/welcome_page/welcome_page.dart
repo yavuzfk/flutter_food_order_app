@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_order_food_app/utilities/color_items.dart';
 import 'package:flutter_order_food_app/utilities/string_items.dart';
 import 'package:flutter_order_food_app/utilities/text_styles.dart';
-import 'package:flutter_order_food_app/views/main_page/main_page.dart';
 import 'package:flutter_order_food_app/views/welcome_page/widgets/go_button.dart';
-import 'package:flutter_order_food_app/views/welcome_page/widgets/image_slider.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -52,7 +50,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   ),
                 ),
                  Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 60.0, vertical: 30),
+                  padding: const EdgeInsets.symmetric(horizontal: 60.0, vertical: 30),
                   child: Text(
                     StringItems().welcomeTitle,
                     style: const TextStyle(

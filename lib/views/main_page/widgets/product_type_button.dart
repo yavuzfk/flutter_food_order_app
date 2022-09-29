@@ -4,7 +4,8 @@ import '../main_page.dart';
 
 class ProductTypeButton extends StatelessWidget {
   const ProductTypeButton({
-    Key? key, required this.type,
+    Key? key,
+    required this.type,
   }) : super(key: key);
   final String type;
 
@@ -15,12 +16,11 @@ class ProductTypeButton extends StatelessWidget {
       width: 90,
       child: ElevatedButton(
           onPressed: () {
-            if(type=='Food'){
+            if (type == 'Food') {
               getFoodProducts();
-
-            }else if(type=='Drink'){
+            } else if (type == 'Drink') {
               getDrinkProducts();
-            }else if(type == 'Dessert'){
+            } else if (type == 'Dessert') {
               getDessertProducts();
             }
           },

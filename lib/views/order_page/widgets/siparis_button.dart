@@ -5,7 +5,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_order_food_app/utilities/string_items.dart';
-import 'package:flutter_order_food_app/views/main_page/main_page.dart';
 
 class SimpleRoundIconButton2 extends StatelessWidget {
   final Color backgroundColor;

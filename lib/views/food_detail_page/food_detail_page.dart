@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_order_food_app/cubit/sepet_cubit.dart';
+import 'package:flutter_order_food_app/repo/url_extension.dart';
 import 'package:flutter_order_food_app/utilities/color_items.dart';
+import 'package:flutter_order_food_app/utilities/string_items.dart';
 import 'package:flutter_order_food_app/utilities/text_styles.dart';
 
 String mockText =
-    "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ";
+    "is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ev"
+    "er since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ";
 
 class FoodDetail extends StatefulWidget {
   FoodDetail(
       {Key? key,
       required this.foodPrice,
       required this.foodName,
-      required this.imagePath, required this.userName})
+      required this.imagePath,
+      required this.userName})
       : super(key: key);
   final int foodPrice;
   final String foodName;
@@ -42,7 +46,7 @@ class _FoodDetailState extends State<FoodDetail> {
                   width: 250,
                   height: 250,
                   child: Image.network(
-                      "http://kasimadalan.pe.hu/yemekler/resimler/${widget.imagePath}"),
+                      "${StringItems().mainUrl}${UrlPaths.resimler.name}/${widget.imagePath}"),
                 ),
               ),
               const Spacer(),
@@ -73,8 +77,15 @@ class _FoodDetailState extends State<FoodDetail> {
                   child: ElevatedButton(
                       onPressed: () {
                         print(widget.foodSize);
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("${widget.foodSize} adet ${widget.foodName} sepete eklendi!")));
-                          context.read<SepetCubit>().sepeteEkle(widget.foodName, widget.imagePath, widget.foodPrice, widget.foodSize, widget.userName);
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(
+                                "${widget.foodSize} adet ${widget.foodName} sepete eklendi!")));
+                        context.read<SepetCubit>().sepeteEkle(
+                            widget.foodName,
+                            widget.imagePath,
+                            widget.foodPrice,
+                            widget.foodSize,
+                            widget.userName);
                       },
                       style: ElevatedButton.styleFrom(
                         primary: Colors.deepOrange,
@@ -94,32 +105,35 @@ class _FoodDetailState extends State<FoodDetail> {
 
   Row incrementButtons() {
     return Row(
-
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextButton(onPressed: () {
-                    setState(() {
-                      widget.foodSize--;
-                    });
-                  }, child: const Text(
-                    "-",
-                    style: TextStyle(fontSize: 30,color: Colors.deepOrange),
-                  ),),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Text(widget.foodSize.toString()),
-                  ),
-                  TextButton(onPressed: () {
-                    setState(() {
-                      widget.foodSize++;
-                    });
-                  }, child: const Text(
-                    "+",
-                    style: TextStyle(fontSize: 20,color: Colors.deepOrange),
-                  ),),
-
-
-                ],
-              );
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        TextButton(
+          onPressed: () {
+            setState(() {
+              widget.foodSize--;
+            });
+          },
+          child: const Text(
+            "-",
+            style: TextStyle(fontSize: 30, color: Colors.deepOrange),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Text(widget.foodSize.toString()),
+        ),
+        TextButton(
+          onPressed: () {
+            setState(() {
+              widget.foodSize++;
+            });
+          },
+          child: const Text(
+            "+",
+            style: TextStyle(fontSize: 20, color: Colors.deepOrange),
+          ),
+        ),
+      ],
+    );
   }
 }

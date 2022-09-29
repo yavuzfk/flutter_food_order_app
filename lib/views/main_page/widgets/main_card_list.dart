@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_order_food_app/cubit/anasayfa_cubit.dart';
+import 'package:flutter_order_food_app/repo/url_extension.dart';
 import 'package:flutter_order_food_app/utilities/string_items.dart';
 import 'package:flutter_order_food_app/views/food_detail_page/food_detail_page.dart';
 import '../../../cubit/anasayfa_cubit.dart';
@@ -44,12 +45,6 @@ class _MainCardListState extends State<MainCardList> {
                   itemBuilder: (BuildContext context, int index) {
                     var food = foodList[index];
                     print(food.foodName);
-
-                    // bool deneme=false;
-                    // if(food.yemek_adi == "Ayran" ||food.yemek_adi == "Fanta"){
-                    //   deneme=true;
-                    // }
-
                     return GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -64,7 +59,7 @@ class _MainCardListState extends State<MainCardList> {
                       },
                       child: FoodCard(
                         imagePath:
-                            StringItems().imagesMainPath + food.foodImageName,
+                            "${StringItems().mainUrl}${UrlPaths.resimler.name}/${food.foodImageName}",
                         foodName: food.foodName,
                         foodPrice: food.foodPrice.toString(),
                       ),
@@ -79,6 +74,3 @@ class _MainCardListState extends State<MainCardList> {
     );
   }
 }
-// enum DrinksEnum{Ayran, Fanta, Su, Kahve}
-// enum TatliEnum{Baklava, Kadayıf, Sütlaç, Tiramisu}
-// enum FoodsEnum{Köfte, Lazanya, Makarna, Pizza} // 2 yemek eksik

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_order_food_app/cubit/sepet_cubit.dart';
 import 'package:flutter_order_food_app/entitiy/cart_model.dart';
+import 'package:flutter_order_food_app/repo/url_extension.dart';
 import 'package:flutter_order_food_app/utilities/color_items.dart';
 import 'package:flutter_order_food_app/utilities/string_items.dart';
 import 'package:flutter_order_food_app/utilities/style_items.dart';
@@ -99,10 +100,8 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
                                                             height: 110,
                                                             child: Image
                                                                 .network(
-                                                                StringItems()
-                                                                    .imagesMainPath +
-                                                                    food
-                                                                        .foodImageName)),
+                                                                "${StringItems().mainUrl}${UrlPaths.resimler.name}/${food
+                                                                        .foodImageName}")),
                                                         Row(
                                                           mainAxisAlignment: MainAxisAlignment
                                                               .spaceEvenly,
@@ -155,7 +154,7 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
                  child: SimpleRoundIconButton2(
                    backgroundColor: ColorItems.orangeColor,
                    buttonText:  Text(
-                     StringItems().siparisButtonText,
+                     StringItems().orderButtonText,
                      style: const TextStyle(color: Colors.white),
                    ),
                    icon: const Icon(Icons.payment),
