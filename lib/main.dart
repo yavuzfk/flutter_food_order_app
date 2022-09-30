@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_order_food_app/cubit/anasayfa_cubit.dart';
-import 'package:flutter_order_food_app/cubit/sepet_cubit.dart';
+import 'package:flutter_order_food_app/cubit/main_page_cubit.dart';
+import 'package:flutter_order_food_app/cubit/cart_cubit.dart';
 import 'package:flutter_order_food_app/views/main_page/main_page.dart';
 import 'package:flutter_order_food_app/views/welcome_page/welcome_page.dart';
 
@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => AnasayfaCubit()),
-        BlocProvider(create: (context) => SepetCubit()),
+        BlocProvider(create: (context) => MainPageCubit()),
+        BlocProvider(create: (context) => CartCubit()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

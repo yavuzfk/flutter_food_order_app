@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_order_food_app/cubit/sepet_cubit.dart';
+import 'package:flutter_order_food_app/cubit/cart_cubit.dart';
 import 'package:flutter_order_food_app/entitiy/cart_model.dart';
 import 'package:flutter_order_food_app/repo/url_extension.dart';
 import 'package:flutter_order_food_app/utilities/color_items.dart';
 import 'package:flutter_order_food_app/utilities/string_items.dart';
-import 'package:flutter_order_food_app/utilities/style_items.dart';
+import 'package:flutter_order_food_app/utilities/gradient_items.dart';
 import 'package:flutter_order_food_app/utilities/text_styles.dart';
-import 'package:flutter_order_food_app/views/order_page/widgets/siparis_button.dart';
+import 'package:flutter_order_food_app/views/order_page/widgets/order_button.dart';
 
 
 class OrderPage extends StatefulWidget {
@@ -17,19 +17,17 @@ class OrderPage extends StatefulWidget {
   State<OrderPage> createState() => _OrderPageState();
 }
 
-var tutar;
+var tutar; //Ozel durum icin burda tutmak durumunda kaldim. Yeri degisecek.
 
 class _OrderPageState extends State<OrderPage> with MyTextStyles {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    context.read<SepetCubit>().sepettekileriGetir(widget.userName);
+    context.read<CartCubit>().getAllFoodFromCart(widget.userName);
     tutar = 0;
   }
 
   int foodSize = 1;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +48,7 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
         //  color: ColorItems.backgroundColor,
         width: 395,
         decoration: BoxDecoration(
-          gradient: StyleItems().linearGradient,
+          gradient: GradientItems().linearGradient,
         ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -64,7 +62,7 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
                     children: [
                       Container(
                         height: 570,
-                        child: BlocBuilder<SepetCubit, List<Cart>>(
+                        child: BlocBuilder<CartCubit, List<Cart>>(
                             builder: (context, foodList) {
                               tutar = 0;
                               tutar = tutarHesapla(foodList);
@@ -205,8 +203,8 @@ class _OrderPageState extends State<OrderPage> with MyTextStyles {
                   label: "Evet",
                   onPressed: () {
                     context
-                        .read<SepetCubit>()
-                        .sepettenSil(food.cartFoodId, food.userName);
+                        .read<CartCubit>()
+                        .deleteFromCart(food.cartFoodId, food.userName);
 
                     if (foodList.length == 1) {
                       setState(() {

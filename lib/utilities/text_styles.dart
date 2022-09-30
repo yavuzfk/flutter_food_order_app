@@ -18,7 +18,6 @@ class MyTextStyles {
     fontSize: 26,
     letterSpacing: 2,
   );
-
   static TextStyle buttonTextStyle = const TextStyle(
     wordSpacing: 2,
     fontWeight: FontWeight.w500,

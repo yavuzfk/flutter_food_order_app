@@ -1,10 +1,12 @@
+
+import 'package:flutter/material.dart';
+import 'package:flutter_order_food_app/views/main_page/main_page.dart';
+
 //*********************************************************************************************
 //This widget is not developed by yavuzfk !!!
 //To reach the developer https://github.com/samarthagarwal
 //*********************************************************************************************
 
-import 'package:flutter/material.dart';
-import 'package:flutter_order_food_app/views/main_page/main_page.dart';
 class SimpleRoundIconButton extends StatelessWidget {
   final Color backgroundColor;
   final Text buttonText;

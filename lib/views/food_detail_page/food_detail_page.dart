@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_order_food_app/cubit/sepet_cubit.dart';
+import 'package:flutter_order_food_app/cubit/cart_cubit.dart';
 import 'package:flutter_order_food_app/repo/url_extension.dart';
 import 'package:flutter_order_food_app/utilities/color_items.dart';
 import 'package:flutter_order_food_app/utilities/string_items.dart';
@@ -80,7 +80,7 @@ class _FoodDetailState extends State<FoodDetail> {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text(
                                 "${widget.foodSize} adet ${widget.foodName} sepete eklendi!")));
-                        context.read<SepetCubit>().sepeteEkle(
+                        context.read<CartCubit>().addCart(
                             widget.foodName,
                             widget.imagePath,
                             widget.foodPrice,

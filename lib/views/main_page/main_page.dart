@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_order_food_app/cubit/anasayfa_cubit.dart';
+import 'package:flutter_order_food_app/cubit/main_page_cubit.dart';
 import 'package:flutter_order_food_app/utilities/color_items.dart';
 import 'package:flutter_order_food_app/utilities/text_styles.dart';
 import 'package:flutter_order_food_app/views/main_page/widgets/bottom_app_bar.dart';
@@ -24,7 +24,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
     super.initState();
     _textEditingController = TextEditingController();
     _tabController = TabController(length: 3, vsync: this);
-    context.read<AnasayfaCubit>().getAllFood();
+    context.read<MainPageCubit>().getAllFood();
   }
 
   @override

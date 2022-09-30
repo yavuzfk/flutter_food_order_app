@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_order_food_app/cubit/anasayfa_cubit.dart';
+import 'package:flutter_order_food_app/cubit/main_page_cubit.dart';
 import 'package:flutter_order_food_app/repo/url_extension.dart';
 import 'package:flutter_order_food_app/utilities/string_items.dart';
 import 'package:flutter_order_food_app/views/food_detail_page/food_detail_page.dart';
-import '../../../cubit/anasayfa_cubit.dart';
+import '../../../cubit/main_page_cubit.dart';
 import '../../../entitiy/food_model.dart';
 import 'food_card_widget.dart';
 
@@ -23,14 +23,14 @@ class _MainCardListState extends State<MainCardList> {
   @override
   void initState() {
     super.initState();
-    context.read<AnasayfaCubit>().getAllFood();
+    context.read<MainPageCubit>().getAllFood();
   }
 
   String foodType = "-";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<AnasayfaCubit, List<Food>>(
+      body: BlocBuilder<MainPageCubit, List<Food>>(
         builder: (context, foodList) {
           if (foodList.isNotEmpty) {
             return MediaQuery.removePadding(
