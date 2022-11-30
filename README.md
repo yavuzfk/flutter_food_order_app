@@ -5,7 +5,7 @@
 
 ## Tech
 - BLoC Pattern
-- Network with [Dio](https://pages.github.com/)
+- Network with [Dio](https://pub.dev/packages/dio)
 
 ## Screen Shots
 ![Screenshot_2022-09-28-15-49-37-072_com example flutter_order_food_app](https://user-images.githubusercontent.com/17355685/192787618-d8f195bb-faf3-4a01-8979-5ffd7cc54289.jpg)
